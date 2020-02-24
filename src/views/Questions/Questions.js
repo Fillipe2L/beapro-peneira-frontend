@@ -19,7 +19,6 @@ import Typography from "@material-ui/core/Typography";
 import {
   Checkbox,
   FormControl,
-  FormLabel,
   RadioGroup,
   FormControlLabel,
   Radio

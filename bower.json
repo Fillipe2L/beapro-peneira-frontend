@@ -1,9 +1,7 @@
 {
   "name": "beapro-peneira-frontend",
-  "homepage": "https://github.com/creativetimofficial/material-dashboard-react",
-  "authors": [
-    "creative-tim"
-  ],
+  "homepage": "",
+  "authors": [""],
   "description": "Peneira para os jogadores",
   "main": "public/index.html",
   "keywords": [
@@ -15,7 +13,7 @@
     "google",
     "twitter"
   ],
-  "license": "Creative TIM License",
+  "license": "",
   "ignore": [
     "**/.*",
     "node_modules",

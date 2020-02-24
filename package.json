@@ -1,7 +1,7 @@
 {
-  "name": "material-dashboard-react",
-  "version": "1.8.0",
-  "description": "Material Dashboard React. Coded by Creative Tim",
+  "name": "beapro-peneira-frontend",
+  "version": "1.0",
+  "description": "BEAPRO - Peneira",
   "private": false,
   "main": "dist/index.js",
   "dependencies": {
