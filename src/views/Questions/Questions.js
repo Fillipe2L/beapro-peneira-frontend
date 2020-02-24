@@ -104,8 +104,8 @@ function getStepContent(step) {
           <Card>
             <CardHeader>
               <b>
-                <mark>Quantos pontosa</mark> são necessários para que um time
-                seja ganhe de uma partida?
+                <mark>Quantos pontos</mark> são necessários para que um time
+                ganhe uma partida?
               </b>
             </CardHeader>
             <CardBody>

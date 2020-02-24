@@ -16,6 +16,7 @@ import styles from "assets/jss/material-dashboard-react/layouts/adminStyle.js";
 
 import bgImage from "assets/img/sidebar-2.jpg";
 import logo from "assets/img/reactlogo.png";
+import beaproSimboloAzulClaro from "assets/img/beapro_simbolo_azul-claro.png";
 
 let ps;
 
@@ -96,7 +97,7 @@ export default function Admin({ ...rest }) {
       <Sidebar
         routes={routes}
         logoText={"BEAPRO - PENEIRA"}
-        logo={logo}
+        logo={beaproSimboloAzulClaro}
         image={image}
         handleDrawerToggle={handleDrawerToggle}
         open={mobileOpen}

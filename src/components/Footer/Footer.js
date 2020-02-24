@@ -13,43 +13,15 @@ const useStyles = makeStyles(styles);
 export default function Footer(props) {
   const classes = useStyles();
   return (
-    <footer className={classes.footer}>
+    <footer className={classes.footer + ` pb-0`}>
       <div className={classes.container}>
-        <div className={classes.left}>
-          <List className={classes.list}>
-            <ListItem className={classes.inlineBlock}>
-              <a href="#home" className={classes.block}>
-                Home
-              </a>
-            </ListItem>
-            <ListItem className={classes.inlineBlock}>
-              <a href="#company" className={classes.block}>
-                Company
-              </a>
-            </ListItem>
-            <ListItem className={classes.inlineBlock}>
-              <a href="#portfolio" className={classes.block}>
-                Portfolio
-              </a>
-            </ListItem>
-            <ListItem className={classes.inlineBlock}>
-              <a href="#blog" className={classes.block}>
-                Blog
-              </a>
-            </ListItem>
-          </List>
-        </div>
-        <p className={classes.right}>
+        <p className="text-center">
           <span>
-            &copy; {1900 + new Date().getYear()}{" "}
-            <a
-              href="https://www.creative-tim.com?ref=mdr-footer"
-              target="_blank"
-              className={classes.a}
-            >
-              Creative Tim
-            </a>
-            , made with love for a better web
+            &copy; 2019 - 2020&nbsp;|&nbsp;
+            <b target="_blank" className={classes.a}>
+              BEAPRO
+            </b>{" "}
+            ™
           </span>
         </p>
       </div>
