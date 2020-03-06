@@ -1,20 +1,31 @@
 /*eslint-disable*/
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import "./index.css";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
-import { Paper, Grid } from "@material-ui/core";
+import { Paper, Grid, Avatar, Icon, Button } from "@material-ui/core";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
-import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
-
+import { Timeline } from "react-material-timeline";
 import Background from "../../../assets/img/background-website.jpg";
-import beaproLogo from "assets/img/beapro_simbolo_branco.png";
 
-import { MdGamepad, MdFlag, MdTrendingUp } from "react-icons/md";
+import GridItem from "components/Grid/GridItem.js";
+import CustomInput from "components/CustomInput/CustomInput.js";
+import Card from "components/Card/Card.js";
+import CardHeader from "components/Card/CardHeader.js";
+import CardBody from "components/Card/CardBody.js";
+import CardFooter from "components/Card/CardFooter.js";
+import {
+  MdGamepad,
+  MdFlag,
+  MdTrendingUp,
+  MdSchool,
+  MdMood
+} from "react-icons/md";
+
+import beaproBranca from "assets/img/beapro_logo_branca_total.png";
+import beaproAzul from "assets/img/beapro_logo_azul_escuro.png";
 const styles = {
   header: {
     color: "#FFF",
@@ -23,6 +34,19 @@ const styles = {
     backgroundColor: "transparent !important",
     width: "100%",
     padding: "0.625rem 0",
+    flexFlow: "row rowrap",
+    transition: "all 150ms ease 0s",
+    alignItems: "center",
+    borderRadius: "3px",
+    marginBottom: "20px",
+    justifyContent: "flex-start"
+  },
+  headerWithBackground: {
+    backgroundColor: "#4F68AD",
+    color: "#FFF",
+    boxShadow: "none",
+    width: "100%",
+    padding: "0.250rem 0",
     flexFlow: "row rowrap",
     transition: "all 150ms ease 0s",
     alignItems: "center",
@@ -147,29 +171,142 @@ const styles = {
       marginBottom: "25px",
       textDecoration: "none"
     }
+  },
+  timeline: {},
+  rodape: {
+    padding: "80px 0",
+    zIndex: 3,
+    position: "relative",
+    textAlign: "center",
+    backgroundSize: "cover",
+    backgroundPosition: "50%"
+  },
+  lastFooter: {
+    color: "#4F68AD",
+    textDecoration: "none",
+    background: "#fff",
+    display: "flex",
+    padding: "1rem 0",
+    zIndex: 2,
+    position: "relative",
+    textAlign: "center"
   }
 };
 
 const useStyles = makeStyles(styles);
 
-export default function Homepage() {
+export default function Homepage(props) {
   const classes = useStyles();
+  const [navBackground, setNavBackground] = useState(false);
+
+  const events = [
+    {
+      title: "Etapa I",
+      subheader: "Teste de conhecimento",
+      description: [
+        "É necessário que o participante da peneira tenha conhecimento o suficiente para ser um jogador capacitado para o cenário competitivo de esports."
+      ],
+      icon: (
+        <Avatar>
+          <MdSchool />
+        </Avatar>
+      )
+    },
+    {
+      title: "Etapa II",
+      subheader: "Teste de Psicologico",
+      description: [
+        `Essa etapa serve para avaliar o mindset e a condição psicológica do jogador que é algo muito importante para quem quer ingressar no cenário competitivo de esports.`
+      ],
+      icon: (
+        <Avatar>
+          <MdMood />
+        </Avatar>
+      )
+    },
+    {
+      title: "Etapa III",
+      subheader: "Campeonato",
+      description: [
+        `Será criado um campeonato com formato de eliminatórias e os times serão formados de acordo com o resultado da Etapa 1 e 2. 
+        `
+      ],
+      icon: (
+        <Avatar>
+          <Icon>emoji_events</Icon>
+        </Avatar>
+      )
+    },
+    {
+      title: "Etapa IV",
+      subheader: "Try out",
+      description: [
+        `No “Try Out” será avaliado a comunicação, trabalho em equipe, planejamento, liderança e o comportamento do jogador em jogo.
+        `
+      ],
+      icon: (
+        <Avatar>
+          <Icon>sports</Icon>
+        </Avatar>
+      )
+    },
+    {
+      title: "Etapa V",
+      subheader: "Entrevista",
+      description: [
+        `Nesta etapa a entrevista será criada/feita pelo time profissional de esports para avaliar individualmente o perfil de cada jogador e qual mais se encaixa de acordo com os valores e necessidades da organização.
+        `
+      ],
+      icon: (
+        <Avatar>
+          <Icon>assignment_ind</Icon>
+        </Avatar>
+      )
+    },
+    {
+      title: "Etapa Final",
+      subheader: "Teste de conhecimento",
+      description: ["Integre nosso ranking e entre em um grande Time"],
+      icon: (
+        <Avatar>
+          <Icon>star</Icon>
+        </Avatar>
+      )
+    }
+  ];
+
+  useEffect(() => {
+    window.addEventListener("scroll", listenScrollEvent);
+  }, []);
+  function listenScrollEvent(e) {
+    if (window.scrollY > 145) {
+      setNavBackground(true);
+    } else {
+      setNavBackground(false);
+    }
+  }
 
   return (
     <>
       <AppBar
         component="header"
         position="fixed"
-        className={classes.header}
+        className={
+          navBackground ? classes.headerWithBackground : classes.header
+        }
         color="primary"
       >
         <Toolbar disableGutters={false} className={classes.toolbarStyle}>
           <Button variant="text" className={classes.brandLogo}>
-            <Link to="/">Be a Pro</Link>
+            <Link to="/">
+              <img src={beaproBranca} height="25" />
+            </Link>
           </Button>
 
           <div>
-            <Button color="inherit">Login</Button>
+            <Button color="inherit" className={classes.brandLogo}>
+              <Link to="/admin">Login</Link>
+            </Button>
           </div>
         </Toolbar>
       </AppBar>
@@ -322,9 +459,125 @@ export default function Homepage() {
                 </Grid>
               </Grid>
             </div>
+            <div
+              style={{
+                textAlign: "center",
+                padding: "30px 70px"
+              }}
+            >
+              <Grid container className={classes.detailSection}>
+                <Grid item className={classes.detailItem}>
+                  <h3
+                    style={{
+                      marginBottom: "55px",
+                      color: "#4F68AD",
+                      fontSize: "2.25rem",
+                      fontWeight: 700
+                    }}
+                  >
+                    Os passos para se tornar um campeão
+                  </h3>
+                  <Timeline
+                    color={"red"}
+                    className={classes.timeline}
+                    events={events}
+                  />
+                </Grid>
+              </Grid>
+            </div>
           </div>
         </div>
       </div>
+      <div className={classes.rodape}>
+        <div
+          style={{
+            textAlign: "center",
+            padding: "30px 70px"
+          }}
+        >
+          <Grid container className={classes.detailSection}>
+            <Grid
+              item
+              className={classes.detailItem}
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center"
+              }}
+            >
+              <h3
+                style={{
+                  marginBottom: "55px",
+                  color: "#344A8A",
+                  fontSize: "3.25rem",
+                  fontWeight: "bold"
+                }}
+              >
+                Nada mais te impede de se tornar um Pro
+              </h3>
+              <h4>Olheiros de grandes times estão te esperando na Be a Pro.</h4>
+              <Paper
+                style={{
+                  width: "fit-content",
+                  padding: "20px"
+                }}
+              >
+                <Card>
+                  <CardHeader color="primary">
+                    <h4>Inscreva-se na peneira BEAPRO</h4>
+                  </CardHeader>
+                  <CardBody>
+                    <Grid>
+                      <GridItem>
+                        <CustomInput
+                          labelText="Seu e-mail"
+                          id="username"
+                          formControlProps={{
+                            fullWidth: true
+                          }}
+                        />
+                      </GridItem>
+                      <GridItem>
+                        <CustomInput
+                          labelText="Seu nickname no jogo"
+                          id="email-address"
+                          formControlProps={{
+                            fullWidth: true
+                          }}
+                        />
+                      </GridItem>
+                    </Grid>
+                  </CardBody>
+                  <CardFooter>
+                    <Button variant="contained" style={{ width: "100%" }}>
+                      Inscrever-se
+                    </Button>
+                  </CardFooter>
+                </Card>
+              </Paper>
+            </Grid>
+          </Grid>
+        </div>
+      </div>
+      <footer className={classes.lastFooter}>
+        <div
+          style={{
+            width: "100%",
+            marginLeft: "auto",
+            marginRight: "auto",
+            paddingLeft: "15px",
+            paddingRight: "15px"
+          }}
+        >
+          <div style={{ float: "left !important", display: "block" }}>
+            <img
+              src={beaproAzul}
+              style={{ height: "50px", padding: "15px 15px" }}
+            />
+          </div>
+        </div>
+      </footer>
     </>
   );
 }
