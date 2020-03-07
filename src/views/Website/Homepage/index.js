@@ -305,7 +305,7 @@ export default function Homepage(props) {
 
           <div>
             <Button color="inherit" className={classes.brandLogo}>
-              <Link to="/admin">Login</Link>
+              <Link to="/login">Login</Link>
             </Button>
           </div>
         </Toolbar>
