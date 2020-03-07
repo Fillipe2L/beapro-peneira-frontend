@@ -121,7 +121,7 @@ const styles = {
     }
   },
   container: {
-    margin: "-60px 30px 0px",
+    margin: "-60px 150px 0px",
     boxShadow:
       "0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2)",
     borderRadius: "6px",
@@ -265,7 +265,7 @@ export default function Homepage(props) {
     },
     {
       title: "Etapa Final",
-      subheader: "Teste de conhecimento",
+      subheader: "Torne-se um PRO",
       description: ["Integre nosso ranking e entre em um grande Time"],
       icon: (
         <Avatar>
@@ -461,8 +461,7 @@ export default function Homepage(props) {
             </div>
             <div
               style={{
-                textAlign: "center",
-                padding: "30px 70px"
+                textAlign: "center"
               }}
             >
               <Grid container className={classes.detailSection}>
@@ -479,7 +478,7 @@ export default function Homepage(props) {
                   </h3>
                   <Timeline
                     color={"red"}
-                    className={classes.timeline}
+                    className="timeline"
                     events={events}
                   />
                 </Grid>
@@ -522,6 +521,7 @@ export default function Homepage(props) {
                   width: "fit-content",
                   padding: "20px"
                 }}
+                className="formulario-registro"
               >
                 <Card>
                   <CardHeader color="primary">

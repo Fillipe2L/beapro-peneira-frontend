@@ -1,12 +1,45 @@
-.TimelineBase-cardContainer-197 {
+[class*="TimelineBase-cardContainer-"] {
   border-bottom: 5px solid #4f68ad;
   border-radius: 7px;
 }
 
-.TimelineBase-line-196 {
+[class*="TimelineBase-line-"] {
   background-color: #4f66ac7a !important;
 }
 
 .MuiAvatar-colorDefault {
   background-color: #4f67ac !important;
+}
+
+.MuiGrid-container {
+  padding: 25px;
+}
+
+@media screen and (max-width: 768px) {
+  [class*="TimelineBase-cardContainer-"] {
+    font-size: 13px;
+    text-align: center;
+  }
+
+  [class*="TimelineBase-cardDecoratorRight-"],
+  [class*="TimelineBase-cardDecoratorLeft-"] {
+    display: none !important;
+  }
+
+  [class*="TimelineBase-cardContainer-"] .MuiCardHeader-root {
+    padding: 0;
+  }
+
+  .formulario-registro {
+    width: 90vw !important;
+  }
+
+  [class*="makeStyles-container-"] {
+    padding: 0;
+    margin: -60px 30px 0px !important;
+  }
+
+  .MuiGrid-container {
+    padding: 0;
+  }
 }

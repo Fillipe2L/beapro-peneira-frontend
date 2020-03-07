@@ -29,7 +29,6 @@ const styles = {
     transition: "all 150ms ease 0s",
     alignItems: "center",
     borderRadius: "3px",
-    marginBottom: "20px",
     justifyContent: "flex-start"
   },
   toolbarStyle: {
@@ -56,7 +55,10 @@ const styles = {
       textTransform: "none"
     }
   },
-  loginContainer: { width: "500px !important", padding: "15px" }
+  loginContainer: {
+    width: "500px !important",
+    padding: "15px"
+  }
 };
 
 const useStyles = makeStyles(styles);
@@ -83,7 +85,9 @@ export default function LoginPage() {
         style={{
           display: "flex",
           alignItems: "center",
-          justifyContent: "center"
+          justifyContent: "center",
+          height: "94vh",
+          overflow: "hidden"
         }}
       >
         <Card className={classes.loginContainer}>
