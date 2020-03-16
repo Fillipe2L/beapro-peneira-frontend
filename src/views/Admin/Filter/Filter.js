@@ -16,13 +16,12 @@ import Step from "@material-ui/core/Step";
 import StepLabel from "@material-ui/core/StepLabel";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import {
-  Checkbox,
-  FormControl,
-  RadioGroup,
-  FormControlLabel,
-  Radio
-} from "@material-ui/core";
+import Knowledge from "./Steps/Knowledge";
+import Psychological from "./Steps/Psychological";
+import Tournament from "./Steps/Tournament";
+import TryOut from "./Steps/TryOut";
+import Interview from "./Steps/Interview";
+
 import CardFooter from "components/Card/CardFooter";
 import { Alert, AlertTitle } from "@material-ui/lab";
 
@@ -30,9 +29,11 @@ const useStyles = makeStyles(styles);
 
 function getSteps() {
   return [
-    "Responder Questionário Psicológico",
-    "Responder Questionário Técnico",
-    "Aguardar decisão"
+    "Teste de Conhecimento",
+    "Teste Psicológico",
+    "Campeonato",
+    "Try Out",
+    "Entrevista"
   ];
 }
 
@@ -44,109 +45,21 @@ function getStepContent(step) {
 
   switch (step) {
     case 0:
-      return (
-        <div>
-          <Card>
-            <CardHeader>
-              <b>
-                Você sabe o que é um <mark>rager</mark>?
-              </b>
-            </CardHeader>
-            <CardBody>
-              <FormControl component="fieldset">
-                <RadioGroup
-                  aria-label="gender"
-                  name="gender1"
-                  value={value}
-                  onChange={handleChange}
-                >
-                  <FormControlLabel
-                    value="sim"
-                    control={<Radio />}
-                    label="Sim"
-                  />
-                  <FormControlLabel
-                    value="nao"
-                    control={<Radio />}
-                    label="Não"
-                  />
-                  <FormControlLabel
-                    value="other"
-                    disabled
-                    control={<Radio />}
-                    label="(Outra opção)"
-                  />
-                </RadioGroup>
-              </FormControl>
-            </CardBody>
-          </Card>
-          <Card>
-            <CardHeader>Pra você, o que é ganhar?</CardHeader>
-            <CardBody>
-              <div>
-                <Checkbox />
-                Derrotar o adversário
-              </div>
-              <div>
-                <Checkbox /> Vencer a partida
-              </div>
-              <div>
-                <Checkbox /> Desestabilizar o adversário
-              </div>
-            </CardBody>
-          </Card>
-        </div>
-      );
+      return <Knowledge />;
     case 1:
-      return (
-        <div>
-          <Card>
-            <CardHeader>
-              <b>
-                <mark>Quantos pontos</mark> são necessários para que um time
-                ganhe uma partida?
-              </b>
-            </CardHeader>
-            <CardBody>
-              <FormControl component="fieldset">
-                <RadioGroup
-                  aria-label="gender"
-                  name="gender1"
-                  value={value}
-                  onChange={handleChange}
-                >
-                  <FormControlLabel value="3" control={<Radio />} label="3" />
-                  <FormControlLabel value="8" control={<Radio />} label="8" />
-                  <FormControlLabel value="16" control={<Radio />} label="15" />
-                  <FormControlLabel value="10" control={<Radio />} label="10" />
-                  <FormControlLabel value="5" control={<Radio />} label="5" />
-                  <FormControlLabel
-                    value="Nenhuma das respostas"
-                    control={<Radio />}
-                    label="Nenhuma das respostas"
-                  />
-                </RadioGroup>
-              </FormControl>
-            </CardBody>
-          </Card>
-        </div>
-      );
+      return <Psychological />;
     case 2:
-      return (
-        <div>
-          <Alert severity="warning" className="m-3">
-            <AlertTitle>Aguarde</AlertTitle>
-            Os testes foram respondidos e estão passando pela devida avaliação.
-            Em breve você terá um retorno.
-          </Alert>
-        </div>
-      );
+      return <Tournament />;
+    case 3:
+      return <TryOut />;
+    case 4:
+      return <Interview />;
     default:
       return "Passo desconhecido";
   }
 }
 
-export default function Questions() {
+export default function Filter() {
   const classes = useStyles();
   const [activeStep, setActiveStep] = useState(0);
   const [skipped, setSkipped] = useState(new Set());

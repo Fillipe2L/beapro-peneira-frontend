@@ -1,13 +1,13 @@
 // @material-ui/icons
 import Dashboard from "@material-ui/icons/Dashboard";
 import Person from "@material-ui/icons/Person";
-import BubbleChart from "@material-ui/icons/BubbleChart";
+import FastForward from "@material-ui/icons/FastForward";
 import Notifications from "@material-ui/icons/Notifications";
 // core components/views for Admin layout
 import DashboardPage from "views/Admin/Dashboard/Dashboard.js";
 import UserProfile from "views/Admin/UserProfile/UserProfile.js";
 import NotificationsPage from "views/Admin/Notifications/Notifications.js";
-import Questions from "views/Admin/Questions/Questions";
+import Filter from "views/Admin/Filter/Filter";
 // core components/views for RTL layout
 
 const dashboardRoutes = [
@@ -26,10 +26,10 @@ const dashboardRoutes = [
     layout: "/admin"
   },
   {
-    path: "/questions",
-    name: "Questionários",
-    icon: BubbleChart,
-    component: Questions,
+    path: "/filter",
+    name: "Peneira",
+    icon: FastForward,
+    component: Filter,
     layout: "/admin"
   },
   {
