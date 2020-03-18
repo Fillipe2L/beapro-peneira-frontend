@@ -20,13 +20,15 @@ function Quiz(props) {
   }
 
   return (
-    <div key={props.questionId}>
-      <QuestionCount counter={props.questionId} total={props.questionTotal} />
-      <Question content={props.question} />
-      <ul className="answerOptions">
-        {props.answerOptions.map(renderAnswerOptions)}
-      </ul>
-    </div>
+    <CSSTransition timeout={800}>
+      <div key={props.questionId}>
+        <QuestionCount counter={props.questionId} total={props.questionTotal} />
+        <Question content={props.question} />
+        <ul className="answerOptions">
+          {props.answerOptions.map(renderAnswerOptions)}
+        </ul>
+      </div>
+    </CSSTransition>
   );
 }
 

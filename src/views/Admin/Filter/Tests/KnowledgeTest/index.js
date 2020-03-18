@@ -12,8 +12,9 @@ import Typography from "@material-ui/core/Typography";
 import Slide from "@material-ui/core/Slide";
 import beaproBranca from "assets/img/beapro_logo_branca_total.png";
 import Quiz from "components/Quiz";
+import Result from "components/Quiz/Result";
 import quizQuestions from "api/quizQuestions";
-import update from "immutability-helper";
+
 import "./style.css";
 
 // import { Container } from './styles';
@@ -36,15 +37,14 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 export default function KnowledgeTest({ open, handleClose }) {
   const classes = useStyles();
-  const [test, setTest] = useState({
-    counter: 0,
-    questionId: 1,
-    question: "",
-    answerOptions: [],
-    answer: "",
-    answersCount: {},
-    result: ""
-  });
+
+  const [counter, setCounter] = useState(0);
+  const [questionId, setQuestionId] = useState(1);
+  const [question, setQuestion] = useState("");
+  const [answerOptions, setAnswerOptions] = useState([]);
+  const [answer, setAnswer] = useState("");
+  const [answersCount, setAnswersCount] = useState({});
+  const [result, setResult] = useState("");
 
   function shuffleArray(array) {
     var currentIndex = array.length,
@@ -70,54 +70,61 @@ export default function KnowledgeTest({ open, handleClose }) {
     const shuffledAnswerOptions = quizQuestions.map(question =>
       shuffleArray(question.answers)
     );
-    let tempTest = test;
-    tempTest.question = quizQuestions[0].question;
-    tempTest.answerOptions = shuffledAnswerOptions[0];
-    setTest(tempTest);
-  }, [test]);
+    setQuestion(quizQuestions[0].question);
+    setAnswerOptions(shuffledAnswerOptions[0]);
+  }, []);
 
   function setNextQuestion() {
-    let tempTest = test;
-    tempTest.counter = test.counter + 1;
-    tempTest.questionId = test.questionId + 1;
-    tempTest.question = quizQuestions[tempTest.counter].question;
-    tempTest.answerOptions = quizQuestions[tempTest.counter].answers;
-    tempTest.answer = "";
-    setTest(tempTest);
+    setCounter(counter + 1);
+    setQuestionId(questionId + 1);
+    setQuestion(quizQuestions[counter].question);
+    setAnswerOptions(quizQuestions[counter].answers);
+    setAnswer("");
   }
   function handleAnswerSelected(event) {
-    handleClose(false);
     setUserAnswer(event.currentTarget.value);
-    if (test.questionId < quizQuestions.length) {
+    if (questionId < quizQuestions.length) {
       setTimeout(() => setNextQuestion(), 300);
     } else {
       setTimeout(() => setResults(getResults()), 300);
     }
   }
 
-  function setUserAnswer(answer) {
-    let tempTest = test;
-    tempTest.answersCount = {
-      ...test.answersCount,
-      [answer]: (test.answersCount[answer] || 0) + 1
-    };
-    tempTest.answer = answer;
-    setTest(tempTest);
-    console.log(test);
+  function setUserAnswer(currentAnswer) {
+    setAnswersCount({
+      ...answersCount,
+      [answer]: (answersCount[currentAnswer] || 0) + 1
+    });
+    setAnswer(currentAnswer);
   }
 
   function getResults() {
-    const answersCount = test.answersCount;
     const answersCountKeys = Object.keys(answersCount);
     const answersCountValues = answersCountKeys.map(key => answersCount[key]);
     const maxAnswerCount = Math.max.apply(null, answersCountValues);
 
     return answersCountKeys.filter(key => answersCount[key] === maxAnswerCount);
   }
+
   function setResults(result) {
-    let tempTest = test;
-    tempTest.result = result.length === 1 ? result[0] : "Undetermined";
-    setTest(tempTest);
+    setResult(result.length === 1 ? result[0] : "Undetermined");
+  }
+
+  function renderQuiz() {
+    return (
+      <Quiz
+        answer={answer}
+        answerOptions={answerOptions}
+        questionId={questionId}
+        question={question}
+        questionTotal={quizQuestions.length}
+        onAnswerSelected={handleAnswerSelected}
+      />
+    );
+  }
+
+  function renderResult() {
+    return <Result quizResult={this.state.result} />;
   }
 
   return (
@@ -138,16 +145,7 @@ export default function KnowledgeTest({ open, handleClose }) {
           </div>
         </Toolbar>
       </AppBar>
-      <Container>
-        <Quiz
-          answer={test.answer}
-          answerOptions={test.answerOptions}
-          questionId={test.questionId}
-          question={test.question}
-          questionTotal={quizQuestions.length}
-          onAnswerSelected={handleAnswerSelected}
-        />
-      </Container>
+      <Container>{result ? renderResult() : renderQuiz()}</Container>
     </Dialog>
   );
 }

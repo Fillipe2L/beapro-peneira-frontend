@@ -120,18 +120,18 @@ export default function LoginPage() {
             </Grid>
           </CardBody>
           <CardFooter>
-            <Button
-              variant="contained"
-              color="primary"
-              style={{
-                width: "100%",
-                backgroundColor: "#4f68ad"
-              }}
-            >
-              <Link to="/admin" style={{ color: "#fff" }}>
+            <Link to="/admin" style={{ color: "#fff" }}>
+              <Button
+                variant="contained"
+                color="primary"
+                style={{
+                  width: "100%",
+                  backgroundColor: "#4f68ad"
+                }}
+              >
                 Entrar
-              </Link>
-            </Button>
+              </Button>
+            </Link>
           </CardFooter>
         </Card>
       </Paper>
